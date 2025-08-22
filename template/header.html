@@ -28,11 +28,11 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{% url "home" %}" class="active">Home<br></a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="{% url "extra" %}#gallery">Extra</a></li>
+                    <li><a href="{% url "home" %}#about">About</a></li>
+                    <li><a href="{% url "home" %}#services">Services</a></li>
+                    <li><a href="{% url "extra" %}#gallery">Gallery</a></li>
                     
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="{% url "extra" %}#contact">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
