@@ -5,6 +5,9 @@ login
 {% endblock title %}
 
 {% block content %}
+
+
+
 <section class="h-100" style="background: #f5f6fa;">
   <div class="container h-100 py-">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -26,16 +29,17 @@ login
                 <h3 class="mb-4 text-center fw-bold text-primary">Patient Login</h3>
                 <p class="text-muted text-center mb-3">Fill in your details to Log in account</p>
 
-                <form>
+                <form method="post">
+                  {% csrf_token %}
      
                   <div class="form-outline mb-4">
-                      <label class="form-label fw-semibold text-primary" for="email">Email ID</label>
-                    <input type="email" id="email" class="form-control form-control-lg rounded-3" placeholder="johndoe@gmail.com" />
+                      <label class="form-label fw-semibold text-primary" for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control form-control-lg rounded-3" placeholder="JohnDoe12" />
                   </div>
 
                   <div class="form-outline mb-4">
                       <label class="form-label fw-semibold text-primary" for="password">Password</label>
-                    <input type="password" id="password" class="form-control form-control-lg rounded-3" placeholder="Enter Password" />
+                    <input type="password" id="password" name="password" class="form-control form-control-lg rounded-3" placeholder="Enter Password" />
                   </div>
 
                   <!-- Buttons -->
