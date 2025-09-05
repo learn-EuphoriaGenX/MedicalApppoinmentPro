@@ -11,7 +11,7 @@ def Login(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        userAuthenticate = authenticate(username=username, password=password)
+        userAuthenticate = authenticate(request, username=username, password=password)
         if userAuthenticate is not None:
             login(request, userAuthenticate)
             messages.success(request, f"{username} logged in successfully")

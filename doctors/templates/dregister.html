@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-Register
+Doctor Register
 {% endblock title %}
 
 {% block content %}
@@ -14,7 +14,7 @@ Register
             
             <!-- Left Image Section -->
             <div class="col-xl-6 d-none d-xl-block">
-              <img src="{% static "assets/img/departments-3.jpg" %}"
+              <img src="{% static "assets/img/departments-6.jpg" %}"
                 alt="Patient Registration"
                 class="img-fluid h-100"
                 style="object-fit: cover; border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;" />
@@ -23,33 +23,33 @@ Register
             <!-- Right Form Section -->
             <div class="col-xl-6 bg-white">
               <div class="card-body p-5">
-                <h3 class="mb-4 text-center fw-bold text-primary">Patient Registration</h3>
+                <h3 class="mb-4 text-center fw-bold text-success">Doctor Registration</h3>
                 <p class="text-muted text-center mb-3">Fill in your details to create an account</p>
 
                 <form method="post">
                   {% csrf_token %}
                   <div class="form-outline mb-4">
-                      <label class="form-label fw-semibold text-primary" for="username">Username</label>
+                      <label class="form-label fw-semibold text-success" for="username">Username</label>
                     <input type="text" id="username" name="username" class="form-control form-control-lg rounded-3" placeholder="JohnDoe12" />
                   </div>
   
                   <div class="form-outline mb-4">
-                      <label class="form-label fw-semibold text-primary" for="email">Email ID</label>
+                      <label class="form-label fw-semibold text-success" for="email">Email ID</label>
                     <input type="email" id="email" name="email" class="form-control form-control-lg rounded-3" placeholder="johndoe@gmail.com" />
                   </div>
 
                   <div class="form-outline mb-4">
-                      <label class="form-label fw-semibold text-primary" for="password">Password</label>
+                      <label class="form-label fw-semibold text-success" for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control form-control-lg rounded-3" placeholder="Enter Password" />
                   </div>
 
                    <div class="d-flex justify-content-between align-items-center">
-                    <a href="{% url "dregister" %}" class="text-primary text-decoration-underline mt-4" >Register as A Doctor</a>
+                    <a href="{% url "register" %}" class="text-success text-decoration-underline mt-4" >Register as A Patient</a>
 
                   <!-- Buttons -->
                   <div class="d-flex justify-content-end pt-3">
                     <button type="reset" class="btn btn-light btn-lg me-2">Reset</button>
-                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    <button type="submit" class="btn btn-success btn-lg">Register</button>
                   </div>
                   </div>
 
