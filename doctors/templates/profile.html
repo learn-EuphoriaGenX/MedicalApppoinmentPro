@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titile %}
+Edit Doctor Profile
+{% endblock titile %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-primary text-white text-center rounded-top-4">
+      <h3 class="mb-0 text-white">Doctor Profile</h3>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <!-- Username -->
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" value="{{profile.username}}" readonly  class="form-control" placeholder="Enter username" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" value="{{profile.email}}" readonly  placeholder="Enter email" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input type="text" class="form-control" name="phone" value="{{profile.phone}}" placeholder="Enter phone number" required>
+        </div>
+
+        <!-- Specialization -->
+        <div class="mb-3">
+          <label class="form-label">Specialization</label>
+          <select class="form-select" name="specialization" required>
+            <option value="" disabled selected>Select specialization</option>
+            <option value="General Physician">General Physician</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Neurologist">Neurologist</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Orthopedic">Orthopedic</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Psychiatrist">Psychiatrist</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Gynecologist">Gynecologist</option>
+          </select>
+        </div>
+
+
+        <!-- Experience -->
+        <div class="mb-3">
+          <label class="form-label">Experience (in years)</label>
+          <input type="number" class="form-control"  value="{{profile.experience}}" name="experience" placeholder="Enter years of experience" required>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" name="description" rows="3"   placeholder="Write about yourself...">{{profile.description}}</textarea>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="mb-3">
+          <label class="form-label">Profile Picture</label>
+          <input type="file" class="form-control" name="profile" accept="image/*">
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <textarea class="form-control" name="address"  rows="2" placeholder="Enter address">{{profile.address}}</textarea>
+        </div>
+
+        <!-- Fees -->
+        <div class="mb-3">
+          <label class="form-label">Consultation Fees (₹)</label>
+          <input type="number" class="form-control"  value="{{profile.fees}}" name="fees" placeholder="Enter fees" required>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-4">Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

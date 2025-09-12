@@ -14,7 +14,9 @@ def Login(request):
         try:
             doctor = Doctor.objects.get(username=username)
             if check_password(password, doctor.password):
-                request.session["doctor_id"] = doctor.id  # manual login
+                request.session["doctor_id"] = doctor.id
+                request.session['doctor_name'] = doctor.username
+                request.session['doctor_email'] = doctor.email
                 messages.success(request, f"{username} logged in successfully")
                 return redirect("home")
             else:
@@ -23,9 +25,6 @@ def Login(request):
             messages.error(request, "Doctor not found")
 
         return redirect("dlogin")
-
-
-        
     return render(request, 'dlogin.html')
 
 def Register(request):
@@ -44,10 +43,47 @@ def Register(request):
         else:
             messages.error(request, f"{username} already exists")
             return redirect("dregister")
-
     return render(request, 'dregister.html')
 
 def Logout(request):
-    logout(request)
+    request.session["doctor_id"] = None
+    request.session['doctor_name'] = None
+    request.session['doctor_email'] = None
     messages.success(request, "Logged out successfully")
     return redirect("dlogin")
+
+def Profile(request):
+    doctor = Doctor.objects.get(id = request.session['doctor_id'])
+
+
+    if request.method == "POST":
+        phone = request.POST.get("phone")
+        specialization = request.POST.get("specialization")
+        experience = request.POST.get("experience")
+        description = request.POST.get("description")
+        profile = request.FILES.get("profile")
+        address = request.POST.get("address")
+        fees = request.POST.get("fees")
+
+        try:
+            doctor.phone = phone
+            doctor.specialization = specialization
+            doctor.experience = experience
+            doctor.description = description
+            doctor.profile = profile
+            doctor.address = address
+            doctor.fees = fees
+            doctor.is_account_updated = True
+            doctor.save()
+        
+            messages.success(request, f"{request.session['doctor_name']} Updated successfully")
+            return redirect("home")
+        except Exception as err:
+            print(err)
+            messages.error(request, err)
+            return redirect("dprofile")
+        
+    data = {'profile': doctor}
+
+
+    return render(request, 'profile.html', data)
