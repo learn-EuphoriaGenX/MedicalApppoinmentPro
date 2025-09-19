@@ -50,7 +50,10 @@
 
 
             {% if user.is_authenticated %}
-                <a class="cta-btn d-none d-sm-inline-block me-2"  href="{% url "login" %}">Make Appointment</a>
+                <a class="cta-btn d-none d-sm-inline-block me-2"  href="{% url "all-doctors" %}">Make Appointment</a>
+                {% if user.is_superuser %}
+                <a class=" btn btn-success d-none d-sm-inline-block ms-0 me-2" href="/admin">Dashboard</a>
+                {% endif %}
                 <a class=" btn btn-outline-danger d-none d-sm-inline-block ms-0" href="{% url "logout" %}">Logout</a>
             {% elif request.session.doctor_id %}
                 <a class=" btn btn-outline-danger d-none d-sm-inline-block ms-2" href="{% url "dlogout" %}">Logout</a>

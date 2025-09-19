@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+All Doctors
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Our Doctors</h2>
+
+    <div class="row g-4">
+        {% for doctor in doctors %}
+            <div class="col-md-4 col-sm-6 bg-light" >
+                <div class="card shadow-sm">
+                    {% if doctor.profile %}
+    <img src="{{ doctor.profile.url }}" 
+         class="card-img-top" 
+         alt="{{ doctor.username }}" 
+         style="height: 300px; object-fit: cover; object-position: top;">
+{% else %}
+    <img src='/media/doctor_profiles/default.jpg' 
+         class="card-img-top" 
+         alt="Default profile" 
+         style="height: 300px; object-fit: cover; object-position: top;">
+{% endif %}
+
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ doctor.username }}</h5>
+                        <p class="card-text text-muted mb-1">
+                            <strong>Specialization:</strong> {{ doctor.specialization }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Fees:</strong> ₹{{ doctor.fees }}
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No Doctors Available</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

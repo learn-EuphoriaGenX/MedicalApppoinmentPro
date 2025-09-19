@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def Login(request):
@@ -52,9 +54,9 @@ def Logout(request):
     messages.success(request, "Logged out successfully")
     return redirect("dlogin")
 
+@login_required(login_url="dlogin")
 def Profile(request):
     doctor = Doctor.objects.get(id = request.session['doctor_id'])
-
 
     if request.method == "POST":
         phone = request.POST.get("phone")

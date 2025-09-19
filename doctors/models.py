@@ -24,7 +24,7 @@ class Doctor(models.Model):
     specialization = models.CharField(choices=SPECIALIZATION_CHOICES, max_length=20,blank=True, null=True)
     experience = models.PositiveIntegerField(default=0)
     description = models.TextField(blank=True, null=True)
-    profile = models.ImageField(upload_to="doctor_profiles", blank=True, null=True)
+    profile = models.ImageField(upload_to="doctor_profiles", blank=True, null=True, default='doctor_profiles/default.jpg')
     is_account_updated = models.BooleanField(default=False)
     address = models.TextField(blank=True, null=True)
     fees = models.PositiveBigIntegerField(default=0)
